@@ -7,9 +7,11 @@ WORKDIR /app
 
 COPY composer.json ./
 
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+RUN composer install --no-dev --no-autoloader --no-interaction
 
 COPY . .
+
+RUN composer dump-autoload --optimize --no-interaction
 
 FROM php:8.4-cli
 
